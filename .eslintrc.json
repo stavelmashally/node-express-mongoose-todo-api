@@ -1,0 +1,33 @@
+{
+  "extends": "airbnb",
+  "parserOptions": {
+    "ecmaVersion": 8
+  },
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true
+  },
+  "rules": {
+    "no-tabs":"off",
+    "indent":"off",
+    "func-names": "off",
+    "no-unused-vars": ["error", {
+        "vars": "local",
+        "args": "none"
+      }],
+    "prefer-destructuring": ["error", {
+      "VariableDeclarator": {
+        "array": true,
+        "object": false
+      },
+      "AssignmentExpression": {
+        "array": true,
+        "object": false
+      }
+    }, {
+      "enforceForRenamedProperties": true
+    }],
+    "no-underscore-dangle": "off"
+  }
+}

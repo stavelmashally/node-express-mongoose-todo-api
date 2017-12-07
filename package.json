@@ -1,0 +1,39 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "export NODE_ENV=development && node index.js",
+    "prod": "export NODE_ENV=production && node index.js",
+    "test": "export NODE_ENV=test && mocha app/**/*.test.js",
+    "test-watch": "nodemon --exec 'npm test'"
+  },
+  "author": "Stav Elmashally",
+  "license": "ISC",
+  "dependencies": {
+    "app": "^0.1.0",
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
+    "eslint": "^4.10.0",
+    "express": "^4.15.4",
+    "jsonwebtoken": "^8.0.1",
+    "method-override": "^2.3.9",
+    "mongodb": "^2.2.31",
+    "mongoose": "^4.11.9",
+    "nodemon": "^1.12.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.0",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "expect": "^1.20.2",
+    "mocha": "^3.5.0",
+    "supertest": "^3.0.0"
+  }
+}

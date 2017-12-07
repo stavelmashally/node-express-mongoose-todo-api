@@ -1,0 +1,7 @@
+node_modules/
+
+#IDE
+/.idea/
+
+#enviroment variables
+.env
