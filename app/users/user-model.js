@@ -40,9 +40,9 @@ userSchema.pre('save', async function (next) {
         const user = this;
         if (!user.isModified('password')) {
             return next();
-		}
-		user.password = await bcrypt.hash(user.password, 10);
-		return next();
+        }
+        user.password = await bcrypt.hash(user.password, 10);
+        return next();
     } catch (e) {
         return next(e);
     }

@@ -14,8 +14,8 @@ mongoose.Promise = global.Promise;
 mongoose.connect(dbUrl, {
 	useMongoClient: true,
 });
+
 mongoose.connection
-    .once('open', () => logger.info('Connected to MongoDB.'))
     .on('error', err => logger.error('Unable to connect to MongoDB:', err.message));
 
 app.listen(config.port, () => {

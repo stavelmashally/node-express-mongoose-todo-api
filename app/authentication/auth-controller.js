@@ -8,7 +8,7 @@ exports.login = async (req, res, next) => {
 	try {
 		const user = await User.findOne({ username });
 		if (!user) {
-			return next(new AppError(`${username} does not exist`, 401));
+			return next();
 		}
 		const isMatch = await bcrypt.compare(password, user.password);
 		if (isMatch) {
