@@ -12,6 +12,9 @@ router.route('/login')
 router.route('/register')
 	.post((...params) => authCtrl.register(...params));
 
+router.route('/me')
+	.get((...params) => authCtrl.checkAuth(...params));
+
 router.route('/users')
 	.get(passport.authenticate(), (...params) => userCtrl.list(...params));
 

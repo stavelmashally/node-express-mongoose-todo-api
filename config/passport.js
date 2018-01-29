@@ -10,9 +10,10 @@ const options = {
 
 module.exports = () => {
   passport.use(new Strategy(options, (jwtPayload, done) => {
-    User.findOne({ id: jwtPayload.id })
+    User.findOne({ _id: jwtPayload.user._id })
       .then((user) => {
         if (user) {
+            // console.log(user);
           done(null, user);
         } else {
           done(null, false);

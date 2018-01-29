@@ -8,8 +8,8 @@ const todoSchema = mongoose.Schema({
         trim: true,
     },
     createDate: {
-        type: Date,
-        default: Date.now(),
+        type: String,
+        default: formattedDate(new Date()),
     },
     completed: {
         type: Boolean,
@@ -24,5 +24,14 @@ const todoSchema = mongoose.Schema({
         required: true,
     },
 });
+function formattedDate(d) {
+	let month = String(d.getMonth() + 1);
+	let day = String(d.getDate());
+	const year = String(d.getFullYear());
 
+	if (month.length < 2) month = `0${month}`;
+	if (day.length < 2) day = `0${day}`;
+
+	return `${month}/${day}/${year}`;
+}
 module.exports = mongoose.model('Todo', todoSchema);

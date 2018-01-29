@@ -24,7 +24,7 @@ describe(`GET ${ENDPOINT}`, () => {
 			.set('authorization', token)
 			.expect(200)
 			.expect((res) => {
-				expect(res.body.username).toBe(testUser.username);
+				expect(res.body.email).toBe(testUser.email);
 			})
 			.end(done);
 	});

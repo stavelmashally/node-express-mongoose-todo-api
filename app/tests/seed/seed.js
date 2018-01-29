@@ -8,7 +8,6 @@ const userId = new ObjectID();
 
 const testUser = {
 	_id: userId,
-	username: 'user',
 	email: 'user@gmail.com',
 	password: '123456',
 };

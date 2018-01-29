@@ -9,27 +9,25 @@ const ENDPOINT = '/register';
 
 describe(`POST ${ENDPOINT}`, () => {
 	it('should create a new user', (done) => {
-		const username = 'example';
 		const email = 'example@gmail.com';
 		const password = '123456';
 		request(app)
 			.post(ENDPOINT)
 			.send({
-				username,
 				email,
 				password,
 			})
 			.expect(200)
 			.expect((res) => {
-				expect(res.body.username).toBe(username);
+				expect(res.body.email).toBe(email);
 			})
 			.end(async (err, res) => {
 				if (err) {
 					return done(err);
 				}
-				const users = await User.find({ username });
+				const users = await User.find({ email });
 				expect(users.length).toBe(1);
-				expect(users[0].username).toBe(username);
+				expect(users[0].email).toBe(email);
 				return done();
 			});
 	});
@@ -37,7 +35,6 @@ describe(`POST ${ENDPOINT}`, () => {
 		request(app)
 			.post(ENDPOINT)
 			.send({
-				username: testUser.username,
 				email: testUser.email,
 				password: '123456',
 			})
@@ -54,7 +51,6 @@ describe(`POST ${ENDPOINT}`, () => {
 		request(app)
 			.post(ENDPOINT)
 			.send({
-				username: 'username',
 				email: 'user@gmail',
 				password: '123456',
 			})

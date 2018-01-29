@@ -12,7 +12,7 @@ describe(`POST ${ENDPOINT}`, () => {
 		request(app)
 			.post(ENDPOINT)
 			.send({
-				username: testUser.username,
+				username: testUser.email,
 				password: testUser.password,
 			})
 			.expect(200)
@@ -25,17 +25,17 @@ describe(`POST ${ENDPOINT}`, () => {
 		request(app)
 			.post(ENDPOINT)
 			.send({
-				username: testUser.username,
+				username: testUser.email,
 				password: 'password',
 			})
 			.expect(401)
 			.end(done);
 	});
-	it('should return 404 if user name does not exist', (done) => {
+	it('should return 404 if email does not exist', (done) => {
 		request(app)
 			.post(ENDPOINT)
 			.send({
-				username: 'username',
+				email: 'email',
 				password: testUser.password,
 			})
 			.expect(404)

@@ -3,21 +3,20 @@ const { ObjectID } = require('mongodb');
 
 exports.list = async (req, res, next) => {
     try {
-		const todos = await Todo.find({ _creator: req.user.id });
-		return res.json({ todos });
+		const todos = await Todo.find({ _creator: req.user._id });
+		return res.json(todos);
     } catch (err) {
         return next(err);
     }
 };
 
 exports.create = async (req, res, next) => {
-    const todo = new Todo({
-        text: req.body.text,
-		_creator: req.user.id,
-    });
     try {
-        const savedTodo = await todo.save();
-        return res.json(savedTodo);
+        const todo = await Todo.create({
+			text: req.body.text,
+			_creator: req.user._id,
+		});
+        return res.json(todo);
     } catch (err) {
         return next(err);
     }
@@ -31,7 +30,7 @@ exports.getById = async (req, res, next) => {
     try {
         const todo = await Todo.findOne({
 			_id: id,
-			_creator: req.user.id,
+			_creator: req.user._id,
 		});
 		if (!todo) {
 			return next();
@@ -50,7 +49,7 @@ exports.removeById = async (req, res, next) => {
     try {
         const todo = await Todo.findOneAndRemove({
 			_id: id,
-			_creator: req.user.id,
+			_creator: req.user._id,
 		});
 		if (!todo) {
 			return next();
@@ -63,22 +62,18 @@ exports.removeById = async (req, res, next) => {
 
 exports.update = async (req, res, next) => {
     const id = req.params.id;
-    const body = req.body;
     if (!ObjectID.isValid(id)) {
         return next();
-    }
-    if (typeof (body.completed) === 'boolean' && body.completed) {
-        body.completedAt = new Date().getTime();
-    } else {
-        body.completed = false;
-        body.completedAt = null;
     }
     try {
         const todo = await Todo.findOneAndUpdate({
 			_id: id,
-			_creator: req.user.id,
+			_creator: req.user._id,
 		}, {
-			$set: body,
+			$set: {
+				completed: true,
+				completedAt: Date.now(),
+			},
 		}, {
 			new: true,
 			runValidators: true,
